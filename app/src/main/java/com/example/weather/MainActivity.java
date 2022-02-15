@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,14 +24,15 @@ import org.json.JSONObject;
 
 import java.io.StringReader;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     EditText etCity, etCountry;
-    TextView tvResult;
+    TextView tvResult, temps,feels,humiditys ,descriptions, winds, cloud, pressures;
     private final String url = "http://api.openweathermap.org/data/2.5/weather";
     private final String appid ="f5104bfc84337a602495f556b1d99328";
     DecimalFormat df = new DecimalFormat( "#.##");
-
+    ListView listView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +40,13 @@ public class MainActivity extends AppCompatActivity {
         etCity = findViewById(R.id.etCity);
         etCountry = findViewById(R.id.etCountry);
         tvResult = findViewById(R.id.tvResult);
+        temps = findViewById(R.id.temps);
+        feels = findViewById(R.id.feels);
+        humiditys = findViewById(R.id.humiditys);
+        descriptions = findViewById(R.id.descriptions);
+        winds = findViewById(R.id.winds);
+        cloud = findViewById(R.id.cloud);
+        pressures = findViewById(R.id.pressures);
     }
 
     public void getWeatherDetails(View view) {
@@ -57,6 +66,13 @@ public class MainActivity extends AppCompatActivity {
                 public void onResponse(String response) {
                    // Log.d("response", response);
                     String output = "";
+                    String output1 = "";
+                    String output2 = "";
+                    String output3 = "";
+                    String output4 = "";
+                    String output5 = "";
+                    String output6 = "";
+                    String output7 = "";
                     try {
                         JSONObject jsonResponse = new JSONObject(response);
                         JSONArray jsonArray = jsonResponse.getJSONArray("weather");
@@ -74,17 +90,24 @@ public class MainActivity extends AppCompatActivity {
                         JSONObject jsonObjectSys = jsonResponse.getJSONObject("sys");
                         String countryName = jsonObjectSys.getString("country");
                         String cityName = jsonResponse.getString("name");
-                        tvResult.setTextColor(Color.rgb(255,255,255));
-                        tvResult.setTextSize(18);
-                        output +=  " Current weather of " +cityName + "(" + countryName +")"
-                                + "\n Temp: " + df.format(temp) +"°C"
-                                + "\n Feels like: " +df.format(feelsLike) + "°C"
-                                + "\n Humidity: " + humidity+ "%"
-                                + "\n Description: " +description
-                                +"\n Wind speed: " +wind +"m/s (meter per second)"
-                                +"\n Cloudiness: " +clouds+"%"
-                                + "\n Pressure: " + pressure +"hPa";
-                            tvResult.setText(output);
+
+                        output +=  " Current weather of " +cityName + "(" + countryName +")";
+                        output1 += "\n Temp: " + df.format(temp) +"°C";
+                        output2 += "\n Feels like: " +df.format(feelsLike) + "°C";
+                        output3 += "\n Humidity: " + humidity+ "%";
+                        output4 += "\n Description: " +description;
+                        output5 +="\n Wind speed: " +wind +"m/s ";
+                        output6 +="\n Cloudiness: " +clouds+"%";
+                        output7 += "\n Pressure: " + pressure +"hPa";
+                        tvResult.setText(output);
+                        temps.setText(output1);
+                        feels.setText(output2);
+                        humiditys.setText(output3);
+                        descriptions.setText(output4);
+                        winds.setText(output5);
+                        cloud.setText(output6);
+                        pressures.setText(output7);
+
 
                     } catch (JSONException e) {
                         e.printStackTrace();
