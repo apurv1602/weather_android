@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".splash">
+    tools:context=".splash"
+    android:background="@color/white">
 
     <ImageView
         android:id="@+id/imageView"
@@ -23,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Weather "
-        android:textColor="@color/primary"
+        android:textColor="@color/same"
         android:textSize="38sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -38,7 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="forecast"
-        android:textColor="@color/primary"
+        android:textColor="@color/same"
         android:textSize="28sp"
         android:textStyle="italic"
 
