@@ -27,6 +27,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+    
     EditText etCity, etCountry;
     TextView tvResult, temps,feels,humiditys ,descriptions, winds, cloud, pressures;
     private final String url = "http://api.openweathermap.org/data/2.5/weather";
